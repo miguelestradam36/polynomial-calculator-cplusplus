@@ -5,10 +5,39 @@ Librerias necesarias para el programa
 #include <sstream>
 #include <iostream>
 #include <cmath>
-#include "Termino.h"
 #include <list>
 #include <string>
 #include <algorithm>
+
+class Termino
+{
+private:
+	double coeficiente;
+	int exponente;
+
+public:
+	double getcoeficiente();
+	int getexponente();
+	void setcoeficiente(double coeficiente_);
+	void setexponente(int exponente_);
+};
+double Termino::getcoeficiente()
+{
+	return coeficiente;
+}
+int Termino::getexponente()
+{
+	return exponente;
+}
+void Termino::setexponente(int exponente_)
+{
+	exponente = exponente_;
+}
+void Termino::setcoeficiente(double coeficiente_)
+{
+	coeficiente = coeficiente_;
+}
+
 /*
 Funcion que calcula el resultado de un polinomio en x
 */
@@ -115,9 +144,9 @@ std::list<Termino> RestarPolinomios(std::list<Termino> polinomio_1, std::list<Te
 	std::list<Termino> tmp;
 	//Lista final que devuelve la funcion
 	std::list<Termino> filtered_tmp;
-	for (Termino termino : polinomio_1) 
+	for (Termino termino : polinomio_1)
 	{
-		for (Termino termino_ : polinomio_2) 
+		for (Termino termino_ : polinomio_2)
 		{
 			if (termino.getexponente() == termino_.getexponente()) {
 				double coeficiente = termino.getcoeficiente() - termino_.getcoeficiente();
@@ -292,70 +321,70 @@ int main() {
 
 		switch (accion) {
 			//Modificar primer polinomio
-			case 1: {
-				polinomio_1 = GetPolinomio();
-				imprimirPolinomio(polinomio_1);
-				guardarPolinomios(polinomio_1, "polinomio_1.txt");
-				std::cout << "Primer polinomio modificado" << std::endl;
-				break;
-			}
-			//Modificar segundo polinomio
-			case 2: {
-				polinomio_2 = GetPolinomio();
-				imprimirPolinomio(polinomio_2);
-				guardarPolinomios(polinomio_2, "polinomio_2.txt");
-				std::cout << "Segundo polinomio modificado" << std::endl;
-				break;
-			}
-			//Sumar polinomios
-			case 3: {
-				std::cout << "Sumando primer y segundo polinomio: " << std::endl;
-				std::list<Termino> polinomio_resultante = SumarPolinomios(polinomio_1, polinomio_2);
-				std::cout << "Resultado de suma de polinomios: " << std::endl;
-				imprimirPolinomio(polinomio_resultante);
-				resolverPolinomio(polinomio_resultante);
-				std::cout << std::endl;
-				break;
-			}
-			//Restar el primer polinomio menos el segundo
-			case 4: {
-				std::cout << "Restando el primer polinomio menos el segundo polinomio: " << std::endl;
-				std::list<Termino> polinomio_resultante = RestarPolinomios(polinomio_1, polinomio_2);
-				std::cout << "Resultado de la resta de polinomios: " << std::endl;
-				imprimirPolinomio(polinomio_resultante);
-				resolverPolinomio(polinomio_resultante);
-				std::cout << std::endl;
-				break;
-			}
-			//Restar segundo polinomio menos el primero
-			case 5: {
-				std::cout << "Restando el segundo polinomio menos el primer polinomio: " << std::endl;
-				std::list<Termino> polinomio_resultante = RestarPolinomios(polinomio_2, polinomio_1);
-				std::cout << "Resultado de la resta de polinomios: " << std::endl;
-				imprimirPolinomio(polinomio_resultante);
-				resolverPolinomio(polinomio_resultante);
-				std::cout << std::endl;
-				break;
-			}
-			//Multiplicar polinomios
-			case 6: {
-				std::cout << "Multiplicando primer y segundo polinomio: " << std::endl;
-				std::list<Termino> polinomio_resultante = MultiplicarPolinomios(polinomio_1, polinomio_2);
-				std::cout << "Resultado de multiplicacion de polinomios: " << std::endl;
-				imprimirPolinomio(polinomio_resultante);
-				resolverPolinomio(polinomio_resultante);
-				std::cout << std::endl;
-				break;
-			}
-			//Cerrar programa
-			case 7: {
-				std::cout << "Este programa ha sido finalizado.";
-				break;
-			}
-			//Opcion ingresada no valida
-			default: {
-				std::cout << "Por favor, ingrese un numero que se encuentre en el rango de opciones." << std::endl;
-			}
+		case 1: {
+			polinomio_1 = GetPolinomio();
+			imprimirPolinomio(polinomio_1);
+			guardarPolinomios(polinomio_1, "polinomio_1.txt");
+			std::cout << "Primer polinomio modificado" << std::endl;
+			break;
+		}
+			  //Modificar segundo polinomio
+		case 2: {
+			polinomio_2 = GetPolinomio();
+			imprimirPolinomio(polinomio_2);
+			guardarPolinomios(polinomio_2, "polinomio_2.txt");
+			std::cout << "Segundo polinomio modificado" << std::endl;
+			break;
+		}
+			  //Sumar polinomios
+		case 3: {
+			std::cout << "Sumando primer y segundo polinomio: " << std::endl;
+			std::list<Termino> polinomio_resultante = SumarPolinomios(polinomio_1, polinomio_2);
+			std::cout << "Resultado de suma de polinomios: " << std::endl;
+			imprimirPolinomio(polinomio_resultante);
+			resolverPolinomio(polinomio_resultante);
+			std::cout << std::endl;
+			break;
+		}
+			  //Restar el primer polinomio menos el segundo
+		case 4: {
+			std::cout << "Restando el primer polinomio menos el segundo polinomio: " << std::endl;
+			std::list<Termino> polinomio_resultante = RestarPolinomios(polinomio_1, polinomio_2);
+			std::cout << "Resultado de la resta de polinomios: " << std::endl;
+			imprimirPolinomio(polinomio_resultante);
+			resolverPolinomio(polinomio_resultante);
+			std::cout << std::endl;
+			break;
+		}
+			  //Restar segundo polinomio menos el primero
+		case 5: {
+			std::cout << "Restando el segundo polinomio menos el primer polinomio: " << std::endl;
+			std::list<Termino> polinomio_resultante = RestarPolinomios(polinomio_2, polinomio_1);
+			std::cout << "Resultado de la resta de polinomios: " << std::endl;
+			imprimirPolinomio(polinomio_resultante);
+			resolverPolinomio(polinomio_resultante);
+			std::cout << std::endl;
+			break;
+		}
+			  //Multiplicar polinomios
+		case 6: {
+			std::cout << "Multiplicando primer y segundo polinomio: " << std::endl;
+			std::list<Termino> polinomio_resultante = MultiplicarPolinomios(polinomio_1, polinomio_2);
+			std::cout << "Resultado de multiplicacion de polinomios: " << std::endl;
+			imprimirPolinomio(polinomio_resultante);
+			resolverPolinomio(polinomio_resultante);
+			std::cout << std::endl;
+			break;
+		}
+			  //Cerrar programa
+		case 7: {
+			std::cout << "Este programa ha sido finalizado.";
+			break;
+		}
+			  //Opcion ingresada no valida
+		default: {
+			std::cout << "Por favor, ingrese un numero que se encuentre en el rango de opciones." << std::endl;
+		}
 		}
 
 	} while (accion != 7);

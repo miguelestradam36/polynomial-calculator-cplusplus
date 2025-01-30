@@ -5,3 +5,7 @@ In this repository, you are going to be able to see a polynomial calculator done
 ## How it works ?
 
 Just run the file named `Proyecto.cpp` and use the data from the txt files if you want to avoid entering data. If you want to test the program, you can change the values by yourself. Just note, this project is in Spanish.
+
+### Important
+
+This code is in spanish, since it was for my University.
